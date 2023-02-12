@@ -1,0 +1,34 @@
+{% extends 'admin/main.html' %}
+{% block content %}
+<a type="button" class="btn btn-outline-primary rounded-pill" href="{% url 'legal_scrutiny_add_clients' %}">Add client</a>
+<div class="col-12">
+  <div class="card top-selling overflow-auto">
+    <div class="card-body pb-0">
+        <h5 class="card-title">Top Selling <span>| Today</span></h5>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">Name</th>
+              <th scope="col">Address</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in Legal_scrutiny_list %}
+            <tr>
+              <th scope="row">{{i.id}}</th>
+              <td>{{i.name}}</td>
+              <td>{{i.address}}</td>
+            </tr>
+            {% endfor %}
+            
+            
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+{% endblock content %}

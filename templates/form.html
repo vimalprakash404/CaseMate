@@ -1,0 +1,26 @@
+{% extends 'admin/main.html' %}
+{% block content %}
+    <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{title}}</h5>
+            <!-- Browser Default Validation -->
+            <form class="row g-3" method="POST">
+                {%load crispy_forms_tags %} 
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="col-12">
+                    <label for="{{field.id}}" class="form-label">{{field.label}}</label>
+                    {{field}}
+                </div>
+                {% endfor %}
+              <div class="col-12">
+                <button class="btn btn-primary" type="submit">Submit form</button>
+              </div>
+            </form>
+            <!-- End Browser Default Validation -->
+
+          </div>
+    </div>
+
+{{message}}
+{% endblock content %}

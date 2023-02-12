@@ -1,0 +1,35 @@
+{% extends 'admin/main.html' %}
+{% block content %}
+<a type="button" class="btn btn-outline-primary rounded-pill" href="{% url 'add_court_category' %}">Add category</a>
+<div class="col-12">
+  <div class="card top-selling overflow-auto">
+    <div class="card-body pb-0">
+        <h5 class="card-title">Top Selling <span>| Today</span></h5>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">Category</th>
+              <th scope="col">Description</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in court_category_list %}
+            <tr>
+              <th scope="row">{{i.id}}</th>
+              <td>{{i.name}}</td>
+              <td>{{i.description}}</td>
+              <td class="fw-bold">124</td>
+            </tr>
+            {% endfor %}
+            
+            
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+{% endblock content %}
