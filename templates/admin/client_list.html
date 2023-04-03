@@ -1,3 +1,71 @@
 {% extends 'admin/main.html' %}
-{% block content %} CLIENTS_list
+{% block content %} <a type="button" class="btn btn-outline-primary rounded-pill" href="{% url 'add_clients' %}">Add clients</a>
+<div class="col-12">
+    <div class="card top-selling overflow-auto">
+      <div class="card-body pb-0">
+          <h5 class="card-title">client <span>| list</span></h5>
+  
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th class="fw-bold" scope="col">id</th>
+                <th class="fw-bold" scope="col">Name</th>
+                <th class="fw-bold" scope="col">Address</th>
+                <th class="fw-bold" scope="col">Category</th>
+                <th class="fw-bold" scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in clients %}
+              <tr>
+                <th scope="row">{{i.id}}</th>
+                <td>{{i.First_name}}{{i.Last_name}} </td>
+                <td>{{i.Address}}</td>
+                <td >{{i.Category}}</td>
+                <td>
+                  <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne{{i.id}}" aria-expanded="false" aria-controls="flush-collapseOne">
+                          Action
+                        </button>
+                        <div id="flush-collapseOne{{i.id}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                          {% if  not i.Category %}<a class="btn btn-outline-primary rounded-pill" href="{% url 'add_case' id=i.id%}">
+                            Add to case
+                          </a>
+                          <br>
+                          <a class="btn btn-outline-primary rounded-pill" >
+                            Add to notary
+                          </a>
+                          <br>
+                          {% else %}
+                          {% if i.is_case %}
+                          <a class="btn btn-outline-primary rounded-pill" href="{% url 'tocase' id=i.id%}">
+                            view case
+                          </a>
+                          {% else %}
+                          <a class="btn btn-outline-primary rounded-pill" >
+                            view notary
+                          </a>
+                          {% endif %}
+                    
+                      
+                          {% endif %}
+                          
+                        </div>
+                      </h2>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+              
+              
+            </tbody>
+          </table>
+  
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock content %}

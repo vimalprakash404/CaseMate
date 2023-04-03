@@ -1,2 +1,64 @@
 {% extends 'admin/main.html' %}
-{% block content %}contact{% endblock content %}
+{% block content %}
+<div class="col-12">
+    <div class="card recent-sales overflow-auto">
+
+      <div class="filter">
+        
+        
+      </div>
+
+      <div class="card-body">
+        <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+
+        <table class="table table-borderless datatable">
+          <thead>
+            <tr>
+              <th scope="col">Name </th>
+              <th scope="col">Contact</th>
+              <th scope="col">Type</th>
+              <th scope="col">action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in contact %}
+            <tr>
+              <td>
+                {{i.name}}
+                <div class="modal fade" id="basicModal{{i.phone}}" tabindex="-1">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Contact details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <a href = "mailto:{{i.email}}"> {{i.email}}</a><br>
+                        <a href="tel:{{i.phone}}">{{i.phone}}</a><br>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td><a href="#basicModal{{i.phone}}" class="text-primary">{{i.email}}</a><br>phone:{{i.phone}}</td>
+              {% if i.case %}<td><span class="badge bg-success">CASE:{{i.case}}</span></td>{% endif %}
+              {% if i.notary %}<td><span class="badge bg-danger">Notary</span></td>{% endif %}
+              <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal{{i.phone}}">
+                view
+              </button>
+              
+              </td>
+              </tr>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+{% endblock content %}

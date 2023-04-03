@@ -1,4 +1,37 @@
 {% extends 'admin/main.html' %}
 {% block content %}
 <a type="button" class="btn btn-outline-primary rounded-pill" href="{% url 'add_case_category' %}">Add category</a>
+<div class="col-12">
+    <div class="card top-selling overflow-auto">
+      <div class="card-body pb-0">
+          <h5 class="card-title">Top Selling <span>| Today</span></h5>
+  
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th class="fw-bold" scope="col">id</th>
+                <th class="fw-bold" scope="col">Category</th>
+                <th class="fw-bold" scope="col">description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in data %}
+              <tr>
+                <th scope="row">{{i.id}}</th>
+                <td>{{i.name}}</td>
+                <td>{{i.decription}}</td>
+              </tr>
+              {% endfor %}
+              
+              
+            </tbody>
+          </table>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+
+
 {% endblock content %}

@@ -1,0 +1,37 @@
+{% extends 'admin/main.html' %}
+{% block content %}
+<div class="col-12">
+    <div class="card top-selling overflow-auto">
+      <div class="card-body pb-0">
+          <h5 class="card-title">Closed Notary<span></span></h5>
+  
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th class="fw-bold" scope="col">id</th>
+                <th class="fw-bold" scope="col">Name</th>
+                <th class="fw-bold" scope="col">Address</th>
+                <th class="fw-bold" scope="col">type</th>
+                <th class="fw-bold" scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in data %}
+              <tr>
+                <th scope="row">{{i.id}}</th>
+                <td>{{i.client_name}}</td>
+                <td >{{i.Address}}</td>
+                <td >{{i.category}}</td>
+                <td ><a href="{% url 'notary_change_status' id=i.id status=3 %}">move to close</a></td>
+              </tr>
+              {% endfor %}
+              
+              
+            </tbody>
+          </table>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

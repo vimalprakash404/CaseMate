@@ -29,3 +29,7 @@ urlpatterns = [
 if settings.DEBUG and not urlpatterns:
     urlpatterns += staticfiles_urlpatterns()
 handler404 = 'Admin_user.views.error_404_view'
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

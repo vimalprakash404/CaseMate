@@ -1,0 +1,58 @@
+<svg id="SvgjsSvg1252" width="447" height="316.7" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev" class="apexcharts-svg" xmlns:data="ApexChartsNS" transform="translate(0, 0)" style="background: transparent;"><foreignObject x="0" y="0" width="447" height="316.7"><div class="apexcharts-legend apexcharts-align-center apx-legend-position-right" xmlns="http://www.w3.org/1999/xhtml" style="position: absolute; left: auto; top: 24px; right: 5px;"><div class="apexcharts-legend-series" rel="1" seriesname="criminal" data:collapsed="false" style="margin: 2px 5px;"><span class="apexcharts-legend-marker" rel="1" data:collapsed="false" style="background: rgb(0, 143, 251) !important; color: rgb(0, 143, 251); height: 12px; width: 12px; left: 0px; top: 0px; border-width: 0px; border-color: rgb(255, 255, 255); border-radius: 12px;"></span><span class="apexcharts-legend-text" rel="1" i="0" data:default-text="criminal" data:collapsed="false" style="color: rgb(55, 61, 63); font-size: 12px; font-weight: 400; font-family: Helvetica, Arial, sans-serif;">criminal</span></div><div class="apexcharts-legend-series" rel="2" seriesname="civil" data:collapsed="false" style="margin: 2px 5px;"><span class="apexcharts-legend-marker" rel="2" data:collapsed="false" style="background: rgb(0, 227, 150) !important; color: rgb(0, 227, 150); height: 12px; width: 12px; left: 0px; top: 0px; border-width: 0px; border-color: rgb(255, 255, 255); border-radius: 12px;"></span><span class="apexcharts-legend-text" rel="2" i="1" data:default-text="civil" data:collapsed="false" style="color: rgb(55, 61, 63); font-size: 12px; font-weight: 400; font-family: Helvetica, Arial, sans-serif;">civil</span></div><div class="apexcharts-legend-series" rel="3" seriesname="family" data:collapsed="false" style="margin: 2px 5px;"><span class="apexcharts-legend-marker" rel="3" data:collapsed="false" style="background: rgb(254, 176, 25) !important; color: rgb(254, 176, 25); height: 12px; width: 12px; left: 0px; top: 0px; border-width: 0px; border-color: rgb(255, 255, 255); border-radius: 12px;"></span><span class="apexcharts-legend-text" rel="3" i="2" data:default-text="family" data:collapsed="false" style="color: rgb(55, 61, 63); font-size: 12px; font-weight: 400; font-family: Helvetica, Arial, sans-serif;">family</span></div></div><style type="text/css">	
+    	
+      .apexcharts-legend {	
+        display: flex;	
+        overflow: auto;	
+        padding: 0 10px;	
+      }	
+      .apexcharts-legend.apx-legend-position-bottom, .apexcharts-legend.apx-legend-position-top {	
+        flex-wrap: wrap	
+      }	
+      .apexcharts-legend.apx-legend-position-right, .apexcharts-legend.apx-legend-position-left {	
+        flex-direction: column;	
+        bottom: 0;	
+      }	
+      .apexcharts-legend.apx-legend-position-bottom.apexcharts-align-left, .apexcharts-legend.apx-legend-position-top.apexcharts-align-left, .apexcharts-legend.apx-legend-position-right, .apexcharts-legend.apx-legend-position-left {	
+        justify-content: flex-start;	
+      }	
+      .apexcharts-legend.apx-legend-position-bottom.apexcharts-align-center, .apexcharts-legend.apx-legend-position-top.apexcharts-align-center {	
+        justify-content: center;  	
+      }	
+      .apexcharts-legend.apx-legend-position-bottom.apexcharts-align-right, .apexcharts-legend.apx-legend-position-top.apexcharts-align-right {	
+        justify-content: flex-end;	
+      }	
+      .apexcharts-legend-series {	
+        cursor: pointer;	
+        line-height: normal;	
+      }	
+      .apexcharts-legend.apx-legend-position-bottom .apexcharts-legend-series, .apexcharts-legend.apx-legend-position-top .apexcharts-legend-series{	
+        display: flex;	
+        align-items: center;	
+      }	
+      .apexcharts-legend-text {	
+        position: relative;	
+        font-size: 14px;	
+      }	
+      .apexcharts-legend-text *, .apexcharts-legend-marker * {	
+        pointer-events: none;	
+      }	
+      .apexcharts-legend-marker {	
+        position: relative;	
+        display: inline-block;	
+        cursor: pointer;	
+        margin-right: 3px;	
+        border-style: solid;
+      }	
+      	
+      .apexcharts-legend.apexcharts-align-right .apexcharts-legend-series, .apexcharts-legend.apexcharts-align-left .apexcharts-legend-series{	
+        display: inline-block;	
+      }	
+      .apexcharts-legend-series.apexcharts-no-click {	
+        cursor: auto;	
+      }	
+      .apexcharts-legend .apexcharts-hidden-zero-series, .apexcharts-legend .apexcharts-hidden-null-series {	
+        display: none !important;	
+      }	
+      .apexcharts-inactive-legend {	
+        opacity: 0.45;	
+      }</style></foreignObject><g id="SvgjsG1254" class="apexcharts-inner apexcharts-graphical" transform="translate(22, 0)"><defs id="SvgjsDefs1253"><clipPath id="gridRectMaskzwj9kt6h"><rect id="SvgjsRect1256" width="320" height="352" x="-3" y="-1" rx="0" ry="0" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0" fill="#fff"></rect></clipPath><clipPath id="forecastMaskzwj9kt6h"></clipPath><clipPath id="nonForecastMaskzwj9kt6h"></clipPath><clipPath id="gridRectMarkerMaskzwj9kt6h"><rect id="SvgjsRect1257" width="318" height="354" x="-2" y="-2" rx="0" ry="0" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0" fill="#fff"></rect></clipPath><filter id="SvgjsFilter1265" filterUnits="userSpaceOnUse" width="200%" height="200%" x="-50%" y="-50%"><feFlood id="SvgjsFeFlood1266" flood-color="#000000" flood-opacity="0.45" result="SvgjsFeFlood1266Out" in="SourceGraphic"></feFlood><feComposite id="SvgjsFeComposite1267" in="SvgjsFeFlood1266Out" in2="SourceAlpha" operator="in" result="SvgjsFeComposite1267Out"></feComposite><feOffset id="SvgjsFeOffset1268" dx="1" dy="1" result="SvgjsFeOffset1268Out" in="SvgjsFeComposite1267Out"></feOffset><feGaussianBlur id="SvgjsFeGaussianBlur1269" stdDeviation="1 " result="SvgjsFeGaussianBlur1269Out" in="SvgjsFeOffset1268Out"></feGaussianBlur><feMerge id="SvgjsFeMerge1270" result="SvgjsFeMerge1270Out" in="SourceGraphic"><feMergeNode id="SvgjsFeMergeNode1271" in="SvgjsFeGaussianBlur1269Out"></feMergeNode><feMergeNode id="SvgjsFeMergeNode1272" in="[object Arguments]"></feMergeNode></feMerge><feBlend id="SvgjsFeBlend1273" in="SourceGraphic" in2="SvgjsFeMerge1270Out" mode="normal" result="SvgjsFeBlend1273Out"></feBlend></filter><filter id="SvgjsFilter1278" filterUnits="userSpaceOnUse" width="200%" height="200%" x="-50%" y="-50%"><feFlood id="SvgjsFeFlood1279" flood-color="#000000" flood-opacity="0.45" result="SvgjsFeFlood1279Out" in="SourceGraphic"></feFlood><feComposite id="SvgjsFeComposite1280" in="SvgjsFeFlood1279Out" in2="SourceAlpha" operator="in" result="SvgjsFeComposite1280Out"></feComposite><feOffset id="SvgjsFeOffset1281" dx="1" dy="1" result="SvgjsFeOffset1281Out" in="SvgjsFeComposite1280Out"></feOffset><feGaussianBlur id="SvgjsFeGaussianBlur1282" stdDeviation="1 " result="SvgjsFeGaussianBlur1282Out" in="SvgjsFeOffset1281Out"></feGaussianBlur><feMerge id="SvgjsFeMerge1283" result="SvgjsFeMerge1283Out" in="SourceGraphic"><feMergeNode id="SvgjsFeMergeNode1284" in="SvgjsFeGaussianBlur1282Out"></feMergeNode><feMergeNode id="SvgjsFeMergeNode1285" in="[object Arguments]"></feMergeNode></feMerge><feBlend id="SvgjsFeBlend1286" in="SourceGraphic" in2="SvgjsFeMerge1283Out" mode="normal" result="SvgjsFeBlend1286Out"></feBlend></filter></defs><g id="SvgjsG1258" class="apexcharts-pie"><g id="SvgjsG1259" transform="translate(0, 0) scale(1)"><g id="SvgjsG1260" class="apexcharts-slices"><g id="SvgjsG1261" class="apexcharts-series apexcharts-pie-series" seriesName="criminal" rel="1" data:realIndex="0"><path id="SvgjsPath1262" d="M 157 9.829268292682912 A 147.1707317073171 147.1707317073171 0 1 1 9.829268292682912 157.00000000000003 L 157 157 L 157 9.829268292682912" fill="rgba(0,143,251,1)" fill-opacity="1" stroke-opacity="1" stroke-linecap="butt" stroke-width="2" stroke-dasharray="0" class="apexcharts-pie-area apexcharts-pie-slice-0" index="0" j="0" data:angle="270" data:startAngle="0" data:strokeWidth="2" data:value="3" data:pathOrig="M 157 9.829268292682912 A 147.1707317073171 147.1707317073171 0 1 1 9.829268292682912 157.00000000000003 L 157 157 L 157 9.829268292682912" stroke="#ffffff"></path></g><g id="SvgjsG1274" class="apexcharts-series apexcharts-pie-series" seriesName="civil" rel="2" data:realIndex="1"><path id="SvgjsPath1275" d="M 9.829268292682912 157.00000000000003 A 147.1707317073171 147.1707317073171 0 0 1 156.97431386182177 9.829270534221337 L 157 157 L 9.829268292682912 157.00000000000003" fill="rgba(0,227,150,1)" fill-opacity="1" stroke-opacity="1" stroke-linecap="butt" stroke-width="2" stroke-dasharray="0" class="apexcharts-pie-area apexcharts-pie-slice-1" index="0" j="1" data:angle="90" data:startAngle="270" data:strokeWidth="2" data:value="1" data:pathOrig="M 9.829268292682912 157.00000000000003 A 147.1707317073171 147.1707317073171 0 0 1 156.97431386182177 9.829270534221337 L 157 157 L 9.829268292682912 157.00000000000003" stroke="#ffffff"></path></g><g id="SvgjsG1287" class="apexcharts-series apexcharts-pie-series" seriesName="family" rel="3" data:realIndex="2"><path id="SvgjsPath1288" d="M 156.99999999999997 9.829268292682912 A 147.1707317073171 147.1707317073171 0 0 1 156.97431386182177 9.829270534221337 L 157 157 L 156.99999999999997 9.829268292682912" fill="rgba(254,176,25,1)" fill-opacity="1" stroke-opacity="1" stroke-linecap="butt" stroke-width="2" stroke-dasharray="0" class="apexcharts-pie-area apexcharts-pie-slice-2" index="0" j="2" data:angle="0" data:startAngle="360" data:strokeWidth="2" data:value="0" data:pathOrig="M 156.99999999999997 9.829268292682912 A 147.1707317073171 147.1707317073171 0 0 1 156.97431386182177 9.829270534221337 L 157 157 L 156.99999999999997 9.829268292682912" stroke="#ffffff"></path></g><g id="SvgjsG1263" class="apexcharts-datalabels"><text id="SvgjsText1264" font-family="Helvetica, Arial, sans-serif" x="240.252337905944" y="240.25233790594396" text-anchor="middle" dominant-baseline="auto" font-size="12px" font-weight="600" fill="#ffffff" class="apexcharts-text apexcharts-pie-label" filter="url(#SvgjsFilter1265)" style="font-family: Helvetica, Arial, sans-serif;" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">75.0%</text></g><g id="SvgjsG1276" class="apexcharts-datalabels"><text id="SvgjsText1277" font-family="Helvetica, Arial, sans-serif" x="73.74766209405601" y="73.74766209405604" text-anchor="middle" dominant-baseline="auto" font-size="12px" font-weight="600" fill="#ffffff" class="apexcharts-text apexcharts-pie-label" filter="url(#SvgjsFilter1278)" style="font-family: Helvetica, Arial, sans-serif;" svgjs:data="{&quot;leading&quot;:&quot;1.3&quot;}">25.0%</text></g></g></g></g><line id="SvgjsLine1289" x1="0" y1="-100" x2="314" y2="-100" stroke="#b6b6b6" stroke-dasharray="0" stroke-width="1" stroke-linecap="butt" class="apexcharts-ycrosshairs" y="-100"></line><line id="SvgjsLine1290" x1="0" y1="0" x2="314" y2="0" stroke-dasharray="0" stroke-width="0" stroke-linecap="butt" class="apexcharts-ycrosshairs-hidden"></line></g><g id="SvgjsG1255" class="apexcharts-annotations"></g></svg>

@@ -130,7 +130,12 @@
                 <p>4 hrs. ago</p>
               </div>
             </li>
-
+            <li class="nav-item">
+              <a class="nav-link {% if not todo_list %}collapsed{% endif %}" href="{% url 'todo_list' %}">
+                <i class="bi bi-stickies{% if todo_list %}-fill{% endif %}"></i>
+                <span>TO DO LIST</span>
+              </a>
+            </li>
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -154,7 +159,7 @@
               You have 3 new messages
               <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
-            <li>
+            name="add_notary"),<li>
               <hr class="dropdown-divider">
             </li>
 
@@ -280,7 +285,12 @@
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
-
+      <li class="nav-item">
+        <a class="nav-link {% if not advocates %}collapsed{% endif %}" href="{% url 'advocates' %}">
+          <i class="bi bi-stickies{% if advocates %}-fill{% endif %}"></i>
+          <span>ADVOCATES</span>
+        </a>
+      </li>
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text{% if contact or contact_category %}-fill{% endif %}"></i><span>CONTACT</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -291,13 +301,6 @@
               <i class="bi bi-circle"></i><span>CONTACT LIST</span>
             </a>
           </li>
-          <li>
-            <a href="{% url 'contact_category' %}" {% if contact_category %}class="active"{% endif %}>
-              <i class="bi bi-circle"></i><span>CONTACT CATEGORY</span>
-            </a>
-          </li>
-          
-          
         </ul>
       </li><!-- End Components Nav -->
 
@@ -307,7 +310,7 @@
         </a>
         <ul id="forms-nav" class="nav-content collapse {% if client or client_category %}show{% endif %}" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{% url 'client' %}" {% if contact %}class="active"{% endif %}>
+            <a href="{% url 'client' %}" {% if client %}class="active"{% endif %}>
               <i class="bi bi-circle"></i><span>CLIENT LIST</span>
             </a>
           </li>
@@ -331,9 +334,9 @@
             </a>
           </li>
           <li>
-            <a href="{% url 'add_case' %}" {% if addcase %}class="active"{% endif %}>
+            {% comment %} <a href="{% url 'add_case' %}" {% if addcase %}class="active"{% endif %}>
               <i class="bi bi-circle"></i><span>ADD NEW CASE</span>
-            </a>
+            </a> {% endcomment %}
           </li>
           <li>
             <a href="{% url 'case_category' %}" {% if case_category %}class="active"{% endif %}>
@@ -348,34 +351,25 @@
           <li>
             <a href="{% url 'closed_case' %}" {% if closed_case %}class="active"{% endif %}>
               <i class="bi bi-circle"></i><span>CLOSE CASE</span>
-            </a>
+            </a> 
           </li>
         </ul>
       </li><!-- End Tables Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-file-earmark-text{% if notary or open_notary or closed_notary or add_notary%}-fill{% endif %}"></i><span>NOTARY</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-file-earmark-text{% if notary or open_notary or closed_notary or add_notary or notary_category or progress_notary%}-fill{% endif %}"></i><span>NOTARY</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="charts-nav" class="nav-content collapse {% if notary or open_notary or closed_notary or add_notary%}show{% endif %}" data-bs-parent="#sidebar-nav">
+        <ul id="charts-nav" class="nav-content collapse {% if notary or open_notary or closed_notary or add_notary or progress_notary%}show{% endif %}" data-bs-parent="#sidebar-nav">
+          
           <li>
-            <a href="{% url 'notary' %}" {% if notary %}class="active"{% endif %}>
-              <i class="bi bi-circle"></i><span>ALL NOTARY</span>
+            <a href="{% url 'notary_category' %}" {% if notary_category %}class="active"{% endif %}>
+              <i class="bi bi-circle"></i><span>NOTARY CATEGORY</span>
             </a>
           </li>
           <li>
             <a href="{% url 'open_notary' %}" {% if open_notary %}class="active"{% endif %}>
-              <i class="bi bi-circle"></i><span>OPEN NOTARY</span>
-            </a>
-          </li>
-          <li>
-            <a href="{% url 'closed_notary' %}" {% if closed_notary %}class="active"{% endif %}>
-              <i class="bi bi-circle"></i><span>CLOSED NOTARY</span>
-            </a>
-          </li>
-          <li>
-            <a href="{% url 'add_notary' %}" {% if add_notary %}class="active"{% endif %}>
-              <i class="bi bi-circle"></i><span>ADD NOTARY</span>
+              <i class="bi bi-circle"></i><span>NOTARY</span>
             </a>
           </li>
         </ul>
@@ -386,10 +380,6 @@
           <i class="bi bi-briefcase{% if legal_scrutiny_clients or legal_scrutiny_add_clients or legal_scrutiny_clients or legal_scrutiny_add_appointmends %}-fill{% endif %}"></i><span>LEGAL SCRUTINY</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="icons-nav" class="nav-content collapse {% if legal_scrutiny_clients or legal_scrutiny_add_clients or legal_scrutiny_clients or legal_scrutiny_add_appointmends %}show{% endif %}" data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="{% url 'legal_scrutiny_clients' %}" {% if legal_scrutiny_clients %}class="active"{% endif %}>
-              <i class="bi bi-circle"></i><span>CLIENTS</span>
-            </a>
           </li>
           <li>
             <a href="{% url 'legal_scrutiny_add_clients' %}" {% if legal_scrutiny_add_clients %}class="active"{% endif %}>
@@ -487,6 +477,35 @@
   <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
 
   <!-- Template Main JS File -->
+  <script>
+    function changedate(id,changeid) {
+      var x = document.getElementById(id);
+      var y = document.getElementById(changeid);
+      y.setAttribute("min",x.value);
+      alert("changed");
+    }
+    </script>
+    <script>
+      function changedist() {
+     
+        var id=document.getElementById("id_State").value
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+          const obj = JSON.parse(this.responseText)
+          var message="<option value='' selected>---------</option>"
+          for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+              message=message+"<option value='"+key+"'>"+obj[key]+"</option>"
+            }
+          }
+          
+          document.getElementById("id_district").innerHTML = message;
+        }
+        
+        xhttp.open("GET", "http://127.0.0.1:8000/getdis/"+id);
+        xhttp.send();
+      }
+      </script>
   <script src="{% static 'assets/js/main.js' %}"></script>
 
 </body>

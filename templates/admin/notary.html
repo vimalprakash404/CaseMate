@@ -1,4 +1,37 @@
 {% extends 'admin/main.html' %}
 {% block content %}
-notary
+<div class="col-12">
+    <div class="card top-selling overflow-auto">
+      <div class="card-body pb-0">
+          <h5 class="card-title">Top Selling <span>| Today</span></h5>
+  
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th class="fw-bold" scope="col">id</th>
+                <th class="fw-bold" scope="col">Name</th>
+                <th class="fw-bold" scope="col">Address</th>
+                <th class="fw-bold" scope="col">status</th>
+                <th class="fw-bold" scope="col">type</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in data %}
+              <tr>
+                <th scope="row">{{i.id}}</th>
+                <td>{{i.client_name}}</td>
+                <td >{{i.Address}}</td>
+                <td >{{i.status}}</td>
+                <td >{{i.category}}</td>
+              </tr>
+              {% endfor %}
+              
+              
+            </tbody>
+          </table>
+  
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock content %}

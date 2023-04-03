@@ -1,0 +1,138 @@
+{% extends 'admin/main.html' %}
+{% block content %}
+case detials
+{{data}}
+<br>
+<div class="row align-items-top">
+  <div class="col-lg-6">
+    <button type="button" class="btn btn-outline-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#largeModal">
+      Add
+    </button>
+  
+    <div class="modal fade" id="largeModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add Section</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form class="row g-3" method="POST" action="/case/add/sections/{{data.id}}">
+                  {%load crispy_forms_tags %} 
+                  {% csrf_token %}
+                  {% for field in form %}
+                  <div class="col-12">
+                      <label for="{{field.id}}" class="form-label">{{field.label}}</label>
+                      {{field}}
+                  </div>
+                  {% endfor %}
+                  {% for field in form1 %}
+                  <div class="col-12">
+                      <label for="{{field.id}}" class="form-label">{{field.label}}</label>
+                      {{field}}
+                      {% if field.help_text %}<div class="alert alert-info alert-dismissible fade show" role="alert">
+                  
+                        <i class="bi bi-exclamation-octagon me-1"></i>
+                        {{field.help_text}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                      {% endif %}
+                      {% if field.errors %}<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  
+                        <i class="bi bi-exclamation-octagon me-1"></i>
+                        {{field.errors}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                      {% endif %}
+                  </div>
+                  {% endfor %}
+        
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <input type="submit" class="btn btn-primary" value="Add">
+                    </div>
+              </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      
+      <div class="card-body">
+        <h5 class="card-title">{{data}}</h5>
+        
+        <table class="table">
+          
+          <tbody>
+            
+            <tr>
+              <td>Case number</td>
+              <td >{{data.case_number}}</td>
+            </tr>
+            <tr>
+              <td>Client name</td>
+              <td >{{data.client_name}}</td>
+            </tr>
+            <tr>
+              <td>address</td>
+              <td >{{data.address}}</td>
+            </tr>
+            <tr>
+              <td>Advocate</td>
+              <td >{{data.advocate}}</td>
+            </tr>
+            <tr>
+              <td>Filling Date</td>
+              <td >{{data.Filling_Date}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    {{data}}
+  </div>
+</div>
+<div class="col-12">
+    <div class="card top-selling overflow-auto">
+      <div class="card-body pb-0">
+          <h5 class="card-title">Top Selling <span>| Today</span></h5>
+  
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th class="fw-bold" scope="col">Actions</th>
+                <th class="fw-bold" scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in actions %}
+              <tr>
+                <td>{{i.action}}</td>
+                <td >{{i.date}}</td>
+              </tr>
+              {% endfor %}
+              
+              
+            </tbody>
+          </table>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+<a href="{% url 'add_person' id=data.id%}">add person<a>
+  <div>
+    <div class="card-body">
+      {% for i in sections %}
+      <div class="btn btn-primary mb-2">
+        {{i}} <a href="/case/remove/sections/{{i.id}}"><span class="badge bg-secondary text-light"><i class="bi bi-exclamation-triangle me-1"></i></span> </a>
+      </div>
+      {% endfor %}
+      
+    </div>
+  </div>
+{% endblock content %}
+
