@@ -95,8 +95,11 @@ def add_advocate(request):
     if request.method=="POST":
         form=AdvocateForm(request.POST)
         form1=AddAdvocateLoginTable(request.POST)
-        if form.is_valid() and form1.is_valid():
-            data=form.save()
+        form2=ClientFullFrom(request.POST)
+        if form.is_valid() and form1.is_valid() and form2.is_valid():
+            data=form.save(commit=False)
+            data.address=form2.save()
+            data.save()
             userob=form1.save(commit=False)
             userob.username="ad"+str(data.id)
             userob.save()
@@ -105,10 +108,12 @@ def add_advocate(request):
         else:
             context["form"]=AdvocateForm(request.POST)
             context["form1"]=AddAdvocateLoginTable(request.POST)
+            context["form2"]=ClientFullFrom(request.POST)
             context["message"]="invalid data please enter details"
             return render(request,"form.html",context)
     context["form"]=AdvocateForm()
     context["form1"]=AddAdvocateLoginTable()
+    context["form2"]=ClientFullFrom()
     return render(request,"form.html",context)
 
 def remove_advocate(request,id):
@@ -522,7 +527,7 @@ def open_notary(request):
         form=NotaryForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
-            return redirect("/notary")
+            return redirect("/notary/open")
         else:
             form=NotaryForm(request.POST,request.FILES)
             return render(request,"admin/notarycategory.html",context)

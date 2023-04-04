@@ -33,6 +33,26 @@
                     {% endif %}
                 </div>
                 {% endfor %}
+                {% for field in form2%}
+                <div class="col-12">
+                    <label for="{{field.id}}" class="form-label">{{field.label}}</label>
+                    {{field}}
+                    {% if field.help_text %}<div class="alert alert-info alert-dismissible fade show" role="alert">
+                
+                      <i class="bi bi-exclamation-octagon me-1"></i>
+                      {{field.help_text}}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endif %}
+                    {% if field.errors %}<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                
+                      <i class="bi bi-exclamation-octagon me-1"></i>
+                      {{field.errors}}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
       
               <div class="col-12">
                 <button class="btn btn-primary" type="submit">Submit form</button>

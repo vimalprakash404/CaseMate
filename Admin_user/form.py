@@ -46,7 +46,7 @@ class Addressfr(forms.ModelForm):
 class AdvocateForm(forms.ModelForm):
     class Meta:
         model = Advocate
-        fields=["name","address","phone"]
+        fields=["name","phone"]
     def __init__(self,*args,**kwargs):
         super(AdvocateForm,self).__init__(*args,**kwargs)
         for i in self.fields.values():
