@@ -7,7 +7,11 @@ from Admin_user.models import CaseRegister,Todo_list,Advocate,Notification
 from Admin_user.form import TodolistFrom
 # Create your views here.
 def dashbord(request):
-    return render(request,"advocate/home.html")
+    context={}
+    context["casedata"]=CaseRegister.objects.filter(advocate_id=getadvocateid(request)).count()
+    context["judgement"]=CaseRegister.objects.filter(advocate_id=getadvocateid(request),status=1).count()
+    context["closed"]=CaseRegister.objects.filter(advocate_id=getadvocateid(request),status=2).count()
+    return render(request,"advocate/home.html",context)
 def adv_login(request):
     context={}
     context["title"]="Login"
@@ -57,6 +61,27 @@ def adv_case(request):
     context["advocate_update_form"]=Upadte_advocate_form()
     context["Upadte_hearing_date_form"]=Upadte_hearing_date_form()
     return render(request,"advocate/case.html",context)
+def adv_judgement_case(request):
+    context={"username":getadvocatename(request)}
+    if getnotifications(request):
+        context.update(getnotifications(request))
+        print(getnotifications(request)) 
+    context["case"]=True
+    context["data"]=CaseRegister.objects.all().filter(advocate_id=getadvocateid(request),status="1")
+    context["advocate_update_form"]=Upadte_advocate_form()
+    context["Upadte_hearing_date_form"]=Upadte_hearing_date_form()
+    return render(request,"advocate/case.html",context)
+
+def adv_closed_case(request):
+    context={"username":getadvocatename(request)}
+    if getnotifications(request):
+        context.update(getnotifications(request))
+        print(getnotifications(request)) 
+    context["case"]=True
+    context["data"]=CaseRegister.objects.all().filter(advocate_id=getadvocateid(request),status="2")
+    context["advocate_update_form"]=Upadte_advocate_form()
+    context["Upadte_hearing_date_form"]=Upadte_hearing_date_form()
+    return render(request,"advocate/case.html",context)
 from datetime import date
 def action_case_hearing_update(case_id,date_para):
     addcaseaction(case_id=case_id,action="hearing date updated to"+str(date_para),date=date.today())
@@ -88,6 +113,8 @@ def ad_upadte_hearing_details(request,id):
 
 def ad_close_case(request,id):
     data=CaseRegister.objects.get(id=id)
+    data.status="2"
+    data.save()
     action_case_close(id)
     return redirect("adv_case")
 

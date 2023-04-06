@@ -179,8 +179,8 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>{{username}}</h6>
-              <span>Web Designer</span>
+              <h6>{{request.user.username}}</h6>
+              <span>Advocate</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -269,12 +269,12 @@
             </a>
           </li>
           <li>
-            <a href="{% url 'judgement_case' %}" {% if judgement_case %}class="active"{% endif %}>
+            <a href="{% url 'adv_judgement_case' %}" {% if judgement_case %}class="active"{% endif %}>
               <i class="bi bi-circle"></i><span>JUDGEMENT CASE</span>
             </a>
           </li>
           <li>
-            <a href="{% url 'closed_case' %}" {% if closed_case %}class="active"{% endif %}>
+            <a href="{% url 'adv_closed_case' %}" {% if closed_case %}class="active"{% endif %}>
               <i class="bi bi-circle"></i><span>CLOSE CASE</span>
             </a> 
           </li>
