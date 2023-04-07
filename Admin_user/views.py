@@ -476,14 +476,21 @@ def case_action_close(caseid):
 
 def judgement_case(request):
     context={}
-    context["judgement_case"]=True
-    return render(request,"admin/judgement_case.html",context)
+    
+    context["case"]=True
+    context["data"]=CaseRegister.objects.all().filter(status="1")
+    context["advocate_update_form"]=Upadte_advocate_form()
+    context["Upadte_hearing_date_form"]=Upadte_hearing_date_form()
+    return render(request,"admin/case.html",context)
 
 def closed_case(request):
     context={}
-    context["closed_case"]=True
-    return render(request,"admin/closed_case.html",context)
-#notary
+    context["case"]=True
+    context["data"]=CaseRegister.objects.all().filter(status="2")
+    context["advocate_update_form"]=Upadte_advocate_form()
+    context["Upadte_hearing_date_form"]=Upadte_hearing_date_form()
+    return render(request,"admin/case.html",context)
+
 def notary(request):
     context={}
     context["notary"]=True
