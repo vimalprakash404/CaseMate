@@ -68,10 +68,12 @@ def clienttocase(request,id):
 
 def clienttonotary(request):
     pass
+def is_admin(request):
+    return not request.user.username[2:].isnumeric() and request.user.username[:2]=="ad"
 def home(request):
     context={"title":"Home"}
     #insertstate()
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated and is_admin:
         return redirect("/login")
     print("_____________________________________\n")
     print(str(CaseRegister.objects.all().count()))
@@ -89,6 +91,8 @@ def home(request):
     return render(request,"admin/home.html",context)
 
 def add_advocate(request):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     context={}
     if not request.user.is_authenticated:
         return redirect("/login")
@@ -117,6 +121,8 @@ def add_advocate(request):
     return render(request,"form.html",context)
 
 def remove_advocate(request,id):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     if not request.user.is_authenticated:
         return redirect("/login")
     advocate=Advocate.objects.get(id=id)
@@ -127,6 +133,8 @@ def remove_advocate(request,id):
     
 
 def view_advocate(request):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     context={}
     context["advocate"]=True
     context["title"]="Advocates"
@@ -141,6 +149,8 @@ def add_third_party_advocates(request):
     pass
 #
 def add_case(request):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     context={}
     if not request.user.is_authenticated:
         return redirect("/login")
@@ -166,6 +176,8 @@ def contacts(request):
 
 #contact
 def contact(request):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     context={}
     context["contact"]=True
     contact=[]
@@ -188,14 +200,18 @@ def contact(request):
     context["contact"]=contact
     return render(request,"admin/contact.html",context)
 
-def contact_category(requset):
+def contact_category(request):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     context={}
     context["contact_category"]=True
-    return render(requset,"admin/contact_category.html",context)
+    return render(request,"admin/contact_category.html",context)
 
 #client
 
 def client(request):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     context={}
     context["client"]=True
     context["clients"]=client_model.objects.all()
@@ -204,7 +220,7 @@ def client(request):
 
 
 def add_clients(request):
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated and is_admin:
         return redirect("/login")
     context={}
     context["client"]=True
@@ -227,7 +243,7 @@ def add_clients(request):
         return render(request,"form.html",context)
 
 def client_category(request):
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated and is_admin:
         return redirect("/login")
     context={}
     context["client_category"]=True
@@ -235,7 +251,7 @@ def client_category(request):
     return render(request,"admin/client.html",context)
 
 def add_client_category(request):
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated and is_admin:
         return redirect("/login")
     context={}
     context["client_category"]=True
@@ -252,6 +268,8 @@ def add_client_category(request):
         return render(request,"form.html",context)
 
 def case(request):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     context={}
     context["case"]=True
     context["data"]=CaseRegister.objects.all()
@@ -260,6 +278,8 @@ def case(request):
     return render(request,"admin/case.html",context)
 
 def addcase(request,id):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     context={}
     context["addcase"]=True
     if request.method=="POST":
@@ -281,6 +301,8 @@ def addcase(request,id):
         context["form"]=CaseRegisterForm()
         return render(request,"form.html",context)
 def add_person(request,id):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     context={}
     context["add_person"]=True
     if request.method=="POST":
@@ -305,12 +327,16 @@ def add_person(request,id):
         return render(request,"form.html",context)
     
 def case_category(request):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     context={}
     context["case_category"]=True
     context["data"]=CaseCategory.objects.all()
     return render(request,"admin/case_category.html",context)
 
 def case_category_add(request):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     context={}
     context["case_category"]=True
     if request.method=="POST":
@@ -475,6 +501,8 @@ def case_action_close(caseid):
 
 
 def judgement_case(request):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     context={}
     
     context["case"]=True
@@ -484,6 +512,8 @@ def judgement_case(request):
     return render(request,"admin/case.html",context)
 
 def closed_case(request):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     context={}
     context["case"]=True
     context["data"]=CaseRegister.objects.all().filter(status="2")
@@ -492,11 +522,15 @@ def closed_case(request):
     return render(request,"admin/case.html",context)
 
 def notary(request):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     context={}
     context["notary"]=True
     context["data"]=NotaryModel.objects.all()
     return render(request,"admin/notary.html",context)
 def notary_category(request):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     context={}
     context["notary_category"]=True
     context["data"]=NotaryCategory.objects.all()
@@ -513,6 +547,8 @@ def notary_category(request):
         return render(request,"admin/notarycategory.html",context)
 
 def notary_add_category(request):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     context={}
     context["notary"]=True
     if request.method=="POST":
@@ -527,6 +563,8 @@ def notary_add_category(request):
         context["form1"]=NotaryCategoryform()
         return render(request,"admin/notarycategory.html",context)
 def open_notary(request):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     context={}
     context["open_notary"]=True
     context["data"]=NotaryModel.objects.all()
@@ -654,6 +692,8 @@ def add_court_category(request):
 #todo list
 
 def todo_list(request):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     context={}
     context["todo_list"]=True
     data=Todo_list.objects.all()
@@ -662,6 +702,8 @@ def todo_list(request):
     return render(request,"admin/todo.html",context)
 
 def addtodolist(request):
+    if not request.user.is_authenticated and is_admin:
+        return redirect("/login")
     context={}
     context["todo_list"]=True
     if request.method == "POST":
