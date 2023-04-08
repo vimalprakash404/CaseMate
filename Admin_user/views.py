@@ -674,6 +674,7 @@ def court_category(request):
     return render(request,"admin/court_category.html",context)
 def add_court_category(request):
     context={}
+    
     if not request.user.is_authenticated:
         return redirect("/login")
     context['title']="Add Court Category"
