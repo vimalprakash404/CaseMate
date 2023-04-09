@@ -51,7 +51,6 @@ def getadvocateid(request):
 from Admin_user.form import Upadte_advocate_form,Upadte_hearing_date_form
 
 def adv_case(request):
-    
     context={"username":getadvocatename(request)}
     if getnotifications(request):
         context.update(getnotifications(request))
