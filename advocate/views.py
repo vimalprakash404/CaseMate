@@ -7,7 +7,7 @@ from Admin_user.models import CaseRegister,Todo_list,Advocate,Notification
 from Admin_user.form import TodolistFrom
 # Create your views here.
 def dashbord(request):
-    context={}
+    context={"title":"Dashboard"}
     context["casedata"]=CaseRegister.objects.filter(advocate_id=getadvocateid(request)).count()
     context["judgement"]=CaseRegister.objects.filter(advocate_id=getadvocateid(request),status=1).count()
     context["closed"]=CaseRegister.objects.filter(advocate_id=getadvocateid(request),status=2).count()
@@ -51,7 +51,7 @@ def getadvocateid(request):
 from Admin_user.form import Upadte_advocate_form,Upadte_hearing_date_form
 
 def adv_case(request):
-    context={"username":getadvocatename(request)}
+    context={"username":getadvocatename(request),"title":"Case"}
     if getnotifications(request):
         context.update(getnotifications(request))
         print(getnotifications(request)) 
@@ -61,7 +61,7 @@ def adv_case(request):
     context["Upadte_hearing_date_form"]=Upadte_hearing_date_form()
     return render(request,"advocate/case.html",context)
 def adv_judgement_case(request):
-    context={"username":getadvocatename(request)}
+    context={"username":getadvocatename(request),"title":"Judgement Case"}
     if getnotifications(request):
         context.update(getnotifications(request))
         print(getnotifications(request)) 
@@ -72,10 +72,9 @@ def adv_judgement_case(request):
     return render(request,"advocate/case.html",context)
 
 def adv_closed_case(request):
-    context={"username":getadvocatename(request)}
+    context={"username":getadvocatename(request),"title":"Closed Case"}
     if getnotifications(request):
         context.update(getnotifications(request))
-        print(getnotifications(request)) 
     context["case"]=True
     context["data"]=CaseRegister.objects.all().filter(advocate_id=getadvocateid(request),status="2")
     context["advocate_update_form"]=Upadte_advocate_form()
@@ -118,7 +117,7 @@ def ad_close_case(request,id):
     return redirect("adv_case")
 
 def contact(request):
-    context={}
+    context={"title":"Contact"}
     context["contact"]=True
     contact=[]
     cases=CaseRegister.objects.all().filter(advocate_id=getadvocateid(request))
@@ -136,7 +135,7 @@ def notification(request):
     pass
 
 def todolist(request):
-    context={}
+    context={"title":"Todo"}
     context["todo_list"]=True
     data=Todo_list.objects.all()
     context["data"]=data
