@@ -4,7 +4,7 @@ from django.contrib.auth import login as auth_login,authenticate,logout as auth_
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from .form import  Casesectionform,SectionForm,PersonForm,Addressfr,Upadte_hearing_date_form,Upadte_advocate_form,NotaryCategoryform,NotaryForm ,TodolistFrom,AdvocateForm,AddAdvocateLoginTable,CaseRegisterForm,CaseCategoryFrom,CourtCategoryForm,CourtForm,LegalScrutinyFrom,LegalScrutinyAppointmentFrom,ClientFullFrom,FormClients,Client_Category_Form
-from .models import caseSections,Sections,District,State,Notification, CaseAction,NotaryCategory,Todo_list,CaseCategory,CaseRegister,Advocate,CourtCategory,Court,Legalscrutiny,client as client_model ,Client_Category,Notary as NotaryModel
+from .models import Person,caseSections,Sections,District,State,Notification, CaseAction,NotaryCategory,Todo_list,CaseCategory,CaseRegister,Advocate,CourtCategory,Court,Legalscrutiny,client as client_model ,Client_Category,Notary as NotaryModel,Sections
 import json
 
 def insertstate():
@@ -302,7 +302,7 @@ def add_person(request,id):
     context["add_person"]=True
     if request.method=="POST":
         form=PersonForm(request.POST)
-        form2=Addressfr(request.POST)
+        form2=ClientFullFrom(request.POST)
         if form.is_valid()and form2.is_valid():
             data=form.save(commit=False)
             data2=form2.save()
@@ -314,11 +314,11 @@ def add_person(request,id):
             form=PersonForm(request.POST)
             form2=Addressfr(request.POST)
             context["form"]=PersonForm(request.POST)
-            context["form1"]=Addressfr(request.POST)
+            context["form1"]=ClientFullFrom(request.POST)
             return render(request,"form.html",context)
     else :
         context["form"]=PersonForm()
-        context["form1"]=Addressfr()
+        context["form1"]=ClientFullFrom()
         return render(request,"form.html",context)
     
 def case_category(request):
@@ -363,7 +363,9 @@ def case_edit_edit(request,id):
     
 def case_details(request,id):
     ob=CaseRegister.objects.get(id=id)
-    context={}
+    persondata=Person.objects.all().filter(case_id=id)
+    context={"person":persondata}
+    context={"section":caseSections.objects.all().filter(case_id=id)}
     context["data"]=ob
     context["form"]=Casesectionform()
     context["actions"]=CaseAction.objects.filter(case=ob)
