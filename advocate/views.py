@@ -4,7 +4,7 @@ from django.contrib.auth import login as auth_login,authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from Admin_user.models import CaseRegister,Todo_list,Advocate,Notification
-from Admin_user.form import TodolistFrom
+from Admin_user.form import TodolistFrom,Casesectionform
 # Create your views here.
 def dashbord(request):
     context={"title":"Dashboard"}
@@ -70,7 +70,16 @@ def adv_judgement_case(request):
     context["advocate_update_form"]=Upadte_advocate_form()
     context["Upadte_hearing_date_form"]=Upadte_hearing_date_form()
     return render(request,"advocate/case.html",context)
-
+def adv_case_details(request,id):
+    ob=CaseRegister.objects.get(id=id)
+    persondata=Person.objects.all().filter(case_id=id)
+    context={"person":persondata}
+    context={"section":caseSections.objects.all().filter(case_id=id)}
+    context["data"]=ob
+    context["form"]=Casesectionform()
+    context["actions"]=CaseAction.objects.filter(case=ob)
+    context["sections"]=caseSections.objects.all().filter(case=ob)
+    return render(request,"admin/case_details.html",context)
 def adv_closed_case(request):
     context={"username":getadvocatename(request),"title":"Closed Case"}
     if getnotifications(request):
