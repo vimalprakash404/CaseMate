@@ -762,7 +762,7 @@ def addcasesections(request,id):
         if form.is_valid():
             data=form.save(commit=False)
             data.case=CaseRegister.objects.get(id=id)
-            if caseSections.objects.filter(Sections=data.Sections).exists():
+            if caseSections.objects.filter(Sections=data.Sections,case=data.case).exists():
                 return redirect("/case/details/"+str(id))
             data.save()
             return redirect("/case/details/"+str(id))

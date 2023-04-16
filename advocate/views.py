@@ -79,7 +79,24 @@ def adv_case_details(request,id):
     context["form"]=Casesectionform()
     context["actions"]=CaseAction.objects.filter(case=ob)
     context["sections"]=caseSections.objects.all().filter(case=ob)
-    return render(request,"admin/case_details.html",context)
+    return render(request,"advocate/case_details.html",context)
+
+def advocate_addcasesections(request,id):
+    if request.method=="POST":
+        form=Casesectionform(request.POST)
+        if form.is_valid():
+            data=form.save(commit=False)
+            data.case=CaseRegister.objects.get(id=id)
+            if caseSections.objects.filter(Sections=data.Sections,case=data.case).exists():
+                return redirect("/advocate/casedetails/"+str(id))
+            data.save()
+            return redirect("/advocate/casedetails/"+str(id))
+        else:
+            return redirect("/advocate/casedetails/"+str(id))
+            
+    else:
+        return redirect("/advocate/casedetails/"+str(id))
+    
 def adv_closed_case(request):
     context={"username":getadvocatename(request),"title":"Closed Case"}
     if getnotifications(request):

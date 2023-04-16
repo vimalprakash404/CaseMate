@@ -15,7 +15,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form class="row g-3" method="POST" action="/case/add/sections/{{data.id}}">
+            <form class="row g-3" method="POST" action="{% url 'advocate_addcasesections' id=data.id %}">
                 {%load crispy_forms_tags %} 
                 {% csrf_token %}
                 {% for field in form %}
