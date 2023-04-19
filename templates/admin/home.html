@@ -146,7 +146,7 @@
                   <div class="col-lg-6">
                     <div class="card">
                       <div class="card-body">
-                        <h5 class="card-title">Crime type</h5>
+                        <h5 class="card-title">Advocates Case</h5>
           
                         <!-- Pie Chart -->
                         <div id="pieChart"></div>
@@ -154,7 +154,7 @@
                         <script>
                           document.addEventListener("DOMContentLoaded", () => {
                             new ApexCharts(document.querySelector("#pieChart"), {
-                              series: {{crime_type_number}},
+                              series: {{advocate_number}},
                               chart: {
                                 height: 350,
                                 type: 'pie',
@@ -162,7 +162,7 @@
                                   show: true
                                 }
                               },
-                              labels: [{% for i in crime_label %}'{{i}}',{% endfor %}]
+                              labels: [{% for i in advocate_label %}'{{i}}',{% endfor %}]
                             }).render();
                           });
                         </script>

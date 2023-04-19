@@ -80,12 +80,20 @@ def home(request):
     for i in CaseCategory.objects.all():
         crime_type_number.append(CaseRegister.objects.all().filter(case_category=i).count())
         crime_label.append(str(i.name))
+    advocate_number=[]
+    advocate_label=[]
+    for i  in Advocate.objects.all():
+        advocate_number.append(CaseRegister.objects.all().filter(advocate=i).count())
+        advocate_label.append(str(i.name))
+
     context["casedata"]=CaseRegister.objects.all().count()
     context["notarydata"]=NotaryModel.objects.all().count()
     context["legal_su"]=Legalscrutiny.objects.all().count()
     context["crime_type_number"]=crime_type_number
     print(crime_label)
     context["crime_label"]=crime_label
+    context["advocate_number"]=advocate_number
+    context["advocate_label"]=advocate_label
     return render(request,"admin/home.html",context)
 
 def add_advocate(request):
@@ -157,7 +165,7 @@ def add_case(request):
         else:
             context["message"]="added"
             return render(request,"form.html",context)
-    context["form"]=FormClients()
+    #context["form"]=FormClients()
     context["form1"]=CaseRegisterForm()
     return render(request,"form.html",context)
     
@@ -365,7 +373,7 @@ def case_details(request,id):
     ob=CaseRegister.objects.get(id=id)
     persondata=Person.objects.all().filter(case_id=id)
     context={"person":persondata}
-    context={"section":caseSections.objects.all().filter(case_id=id)}
+    context["section"]=caseSections.objects.all().filter(case_id=id)
     context["data"]=ob
     context["form"]=Casesectionform()
     context["actions"]=CaseAction.objects.filter(case=ob)

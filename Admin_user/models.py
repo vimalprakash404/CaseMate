@@ -73,7 +73,7 @@ class client(models.Model):
         return self.First_name+" "+self.Last_name
 class CaseRegister(models.Model):
     client_name=models.ForeignKey(client, on_delete=models.CASCADE)
-    address=models.CharField(max_length=50)
+   # address=models.CharField(max_length=50)
     case_number=models.CharField(max_length=50)
     year=models.IntegerField()
     incident=models.CharField(max_length=50,null=True)
@@ -166,7 +166,7 @@ STATUS_CHOICE=(("Open","Open"),("Progress","Progress"),("Close","Close"))
 
 class Notary(models.Model):
     client_name=models.ForeignKey(client, on_delete=models.CASCADE)
-    Address=models.ForeignKey(Address,null=True, on_delete=models.SET_NULL)
+    #Address=models.ForeignKey(Address,null=True, on_delete=models.SET_NULL)
     category=models.ForeignKey(NotaryCategory,null=True, on_delete=models.SET_NULL)
     file=models.FileField(upload_to="notary", max_length=1000)
     def __str__(self):
