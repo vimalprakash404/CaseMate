@@ -60,10 +60,7 @@
           <table class="table table-striped">
             <thead>
                 <tr>
-                    <th class="fw-bold" scope="col">id</th>
                     <th class="fw-bold" scope="col">Name</th>
-                    <th class="fw-bold" scope="col">Address</th>
-                    <th class="fw-bold" scope="col">status</th>
                     <th class="fw-bold" scope="col">type</th>
                     <th class="fw-bold" scope="col">file</th>
                     {% comment %} <th class="fw-bold" scope="col">Action</th> {% endcomment %}
@@ -72,10 +69,9 @@
             <tbody>
                   {% for i in data %}
                 <tr>
-                    <th scope="row">{{i.id}}</th>
+                 
                     <td>{{i.client_name}}</td>
-                    <td >{{i.Address}}</td>
-                    <td >{{i.status}}</td>
+                    
                     <td >{{i.category}}</td>
                     <td ><a href="/media/{{i.file}}">view</a></td>
                     {% comment %} <td ><a href="{% url 'notary_change_status' id=i.id status=2 %}">move to progress</a></td> {% endcomment %}

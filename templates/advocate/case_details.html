@@ -75,8 +75,8 @@
               <td >{{data.client_name}}</td>
             </tr>
             <tr>
-              <td>address</td>
-              <td >{{data.address}}</td>
+              <td>Address</td>
+              <td >{{data.client_name.Address}}</td>
             </tr>
             <tr>
               <td>Advocate</td>
@@ -136,6 +136,7 @@
       </div>
     </div>
   </div>
+  {% if person %}
   <div class="col-12">
     <div class="card top-selling overflow-auto">
       <div class="card-body pb-0">
@@ -168,15 +169,7 @@
       </div>
     </div>
   </div>
-  <div>
-    <div class="card-body">
-      {% for i in sections %}
-      <div class="btn btn-primary mb-2">
-        {{i}} <a href="/case/remove/sections/{{i.id}}"><span class="badge bg-secondary text-light"><i class="bi bi-exclamation-triangle me-1"></i></span> </a>
-      </div>
-      {% endfor %}
-      
-    </div>
-  </div>
+  {% endif %}
+  
 {% endblock content %}
 
