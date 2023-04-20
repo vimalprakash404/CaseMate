@@ -62,8 +62,9 @@
             <tr>
               <th scope="col">id</th>
               <th scope="col">title</th>
-              <th scope="col">remove</th>
+              
               <th scope="col">status</th>
+              <th scope="col">action</th>
             </tr>
           </thead>
           <tbody>
@@ -71,8 +72,9 @@
             <tr>
               <th scope="row">{{i.id}}</th>
               <td>{{i.title}}</td>
-              <td><a href="todo/done/{{i.id}}">done</a></td>
+              
               <td>{{i.status}}</td>
+              <td><a href="todo/done/{{i.id}}">done</a></td>
             </tr>
             {% endfor %}
             
