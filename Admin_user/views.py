@@ -703,6 +703,11 @@ def todo_list(request):
     context={"title":"Todo"}
     context["todo_list"]=True
     data=Todo_list.objects.all()
+    for i in data:
+        if i.status == "False":
+            i.status="pending"
+        else:
+            i.status="done"
     context["data"]=data
     context["form"]=TodolistFrom()
     return render(request,"admin/todo.html",context)
