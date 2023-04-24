@@ -179,3 +179,8 @@ class Notification(models.Model):
     path=models.CharField(max_length=50)
     date=models.DateField(auto_now=False, auto_now_add=False)
     time=models.TimeField(auto_now=False, auto_now_add=False)
+
+class Judgement(models.Model):
+    case=models.ForeignKey(CaseRegister, on_delete=models.CASCADE)
+    date=models.DateField( auto_now=False, auto_now_add=False)
+    details=models.CharField(max_length=50)
