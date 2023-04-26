@@ -184,3 +184,8 @@ class Judgement(models.Model):
     case=models.ForeignKey(CaseRegister, on_delete=models.CASCADE)
     date=models.DateField( auto_now=False, auto_now_add=False)
     details=models.CharField(max_length=50)
+
+class Judgement_files(models.Model):
+    judgement=models.ForeignKey(Judgement, on_delete=models.CASCADE)
+    type=models.CharField(max_length=50)
+    file=models.FileField(upload_to="judgement", max_length=100)
