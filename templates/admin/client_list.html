@@ -20,7 +20,14 @@
               <tr>
                 <th scope="row">{{i.id}}</th>
                 <td>{{i.First_name}}{{i.Last_name}} </td>
-                <td>{{i.Address}}</td>
+                
+                <td>{{i.Address}}<br>
+                  {{i.Address.Place}}<br>
+                  {{i.Address.City}}<br>
+                  {{i.Address.district}}<br>
+                  {{i.Address.State}}<br>
+                  {{i.Address.Pin}}<br>
+                </td>
                 <td >{{i.Category}}</td>
                 <td>
                   <div class="accordion accordion-flush" id="accordionFlushExample">

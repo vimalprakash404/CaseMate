@@ -24,7 +24,13 @@
               <tr>
                 <th scope="row">{{i.id}}</th>
                 <td>{{i.client_name}}</td>
-                <td>{{i.address}}</td>
+                <td>{{i.client_name.Address}}<br>
+                  {{i.client_name.Address.Place}}<br>
+                  {{i.client_name.Address.City}}<br>
+                  {{i.client_name.Address.district}}<br>
+                  {{i.client_name.Address.State}}<br>
+                  {{i.client_name.Address.Pin}}<br>
+                </td>
                 <td >{{i.case_number}}</td>
                 <td >{{i.year}}</td>
                 <td >{{i.advocate}}</td>

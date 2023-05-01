@@ -20,7 +20,13 @@
               {% for i in data %}
               <tr>
                 <td>{{i.name}}</td>
-                <td>{{i.address}}</td>
+                <td>{{i.address}}<br>
+                  {{i.address.Place}}<br>
+                  {{i.address.City}}<br>
+                  {{i.address.district}}<br>
+                  {{i.address.State}}<br>
+                  {{i.address.Pin}}<br>
+                </td>
                 <td >{{i.phone}}</td>
                 <td><a href="/removeadvocate/{{i.id}}">remove</a></td>
               </tr>
