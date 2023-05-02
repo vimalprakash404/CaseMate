@@ -76,7 +76,14 @@
             </tr>
             <tr>
               <td>address</td>
-              <td >{{data.client_name.Address}}</td>
+              <td >{{data.client_name.Address}}<br>
+                {{data.client_name.Address.Place}}<br>
+                  {{data.client_name.Address.City}}<br>
+                  {{data.client_name.Address.district}}<br>
+                  {{data.client_name.Address.State}}<br>
+                  {{data.client_name.Address.Pin}}
+
+              </td>
             </tr>
             <tr>
               <td>Advocate</td>
@@ -159,7 +166,13 @@
                 <td>{{i.name}}</td>
                 <td >{{i.email}}</td>
                 <td >{{i.types}}</td>
-                <td >{{i.Address}}</td>
+                <td >{{i.Address}}
+                  {{i.Address.Place}}<br>
+                  {{i.Address.City}}<br>
+                  {{i.Address.district}}<br>
+                  {{i.Address.State}}<br>
+                  {{i.Address.Pin}}<br>
+                </td>
               </tr>
               {% endfor %}
               
