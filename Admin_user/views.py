@@ -789,7 +789,8 @@ def removecasesections(request,id):
     case_id=caseSections.objects.get(id=id).case.id
     caseSections.objects.get(id=id).delete()
     return redirect("/case/details/"+str(case_id))
-
+def view_judgement(request):
+    pass
 
 def add_judgement(request):
     pass
