@@ -1,5 +1,9 @@
+from typing import Any, Dict, Mapping, Optional, Type, Union
 from django import forms
-from .models import Judgement,caseSections,Sections,Person,State,District,NotaryCategory,Todo_list,Advocate,CaseRegister,CaseCategory,CourtCategory,Court,Legalscrutiny,Legalscrutiny_appointment,Address,client,Client_Category,Notary
+from django.core.files.base import File
+from django.db.models.base import Model
+from django.forms.utils import ErrorList
+from .models import Judgement_files,Judgement,caseSections,Sections,Person,State,District,NotaryCategory,Todo_list,Advocate,CaseRegister,CaseCategory,CourtCategory,Court,Legalscrutiny,Legalscrutiny_appointment,Address,client,Client_Category,Notary
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms.widgets import DateInput,TimeInput,Select
@@ -241,11 +245,23 @@ class Upadte_hearing_date_form(forms.ModelForm):
             for i in self.fields.values():
                 i.widget.attrs['class']="form-control"
 
-class Judgement_Form(form.ModelForm):
+class Judgement_Form(forms.ModelForm):
     class Meta:
         model=Judgement
-        fields="__all__"
+        fields=["details","date"]
+        widgets={
+            "date":DateInput(attrs={'type':'date'})
+        }
     def __init__(self,*args,**kwargs):
-            super(Upadte_hearing_date_form,self).__init__(*args,**kwargs)
+            super(Judgement_Form,self).__init__(*args,**kwargs)
             for i in self.fields.values():
                 i.widget.attrs['class']="form-control"
+class Judgement_Files_form(forms.ModelForm):
+    class Meta:
+        model=Judgement_files
+        fields=["type","file"]
+    def __init__(self,*args,**kwargs):
+            super(Judgement_Files_form,self).__init__(*args,**kwargs)
+            for i in self.fields.values():
+                i.widget.attrs['class']="form-control"
+    

@@ -46,5 +46,7 @@ urlpatterns = [
     path("todo/add",addtodolist,name="todo_list_add"),
     path("todo/done/<int:id>",done_status_todolist,name="todo_done"),
     path("getdis/<int:id>",get_district),
-    path("section/",sections,name="sections")
+    path("section/",sections,name="sections"),
+    path("addjudgement/<int:case_id>",add_judgement,name="add_judgement"),
+    path("addjudgementfiles/<int:id>",add_judgement_files,name="add_judgement_files"),
 ]

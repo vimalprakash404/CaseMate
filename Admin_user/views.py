@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from django.contrib.auth import login as auth_login,authenticate,logout as auth_logut
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
-from .form import  Casesectionform,SectionForm,PersonForm,Addressfr,Upadte_hearing_date_form,Upadte_advocate_form,NotaryCategoryform,NotaryForm ,TodolistFrom,AdvocateForm,AddAdvocateLoginTable,CaseRegisterForm,CaseCategoryFrom,CourtCategoryForm,CourtForm,LegalScrutinyFrom,LegalScrutinyAppointmentFrom,ClientFullFrom,FormClients,Client_Category_Form
-from .models import Person,caseSections,Sections,District,State,Notification, CaseAction,NotaryCategory,Todo_list,CaseCategory,CaseRegister,Advocate,CourtCategory,Court,Legalscrutiny,client as client_model ,Client_Category,Notary as NotaryModel,Sections
+from .form import  Judgement_Files_form,Casesectionform,SectionForm,PersonForm,Addressfr,Upadte_hearing_date_form,Upadte_advocate_form,NotaryCategoryform,NotaryForm ,TodolistFrom,AdvocateForm,AddAdvocateLoginTable,CaseRegisterForm,CaseCategoryFrom,CourtCategoryForm,CourtForm,LegalScrutinyFrom,LegalScrutinyAppointmentFrom,ClientFullFrom,FormClients,Client_Category_Form,Judgement_Form
+from .models import Judgement_files as jd_file,Person,caseSections,Sections,District,State,Notification, CaseAction,NotaryCategory,Todo_list,CaseCategory,CaseRegister,Advocate,CourtCategory,Court,Legalscrutiny,client as client_model ,Client_Category,Notary as NotaryModel,Sections,Judgement
 import json
 
 def insertstate():
@@ -376,8 +376,12 @@ def case_details(request,id):
     context["section"]=caseSections.objects.all().filter(case_id=id)
     context["data"]=ob
     context["form"]=Casesectionform()
+    context["judgementform"]=Judgement_Form()
+    context["Judgement_Files_form"]=Judgement_Files_form()
     context["actions"]=CaseAction.objects.filter(case=ob)
     context["sections"]=caseSections.objects.all().filter(case=ob)
+    context["judgement"]=Judgement.objects.filter(case=ob)
+    context["judgementfile"]=jd_file.objects.all()
     return render(request,"admin/case_details.html",context)
 
 def upadte_hearing_details(request,id):
@@ -789,11 +793,51 @@ def removecasesections(request,id):
     case_id=caseSections.objects.get(id=id).case.id
     caseSections.objects.get(id=id).delete()
     return redirect("/case/details/"+str(case_id))
+
+
+
 def view_judgement(request):
     pass
 
-def add_judgement(request):
-    pass
+def add_judgement(request,case_id):
+    context={}
+    if request.method=="POST":
+        form=Judgement_Form(request.POST)
+        if form.is_valid():
+            data=form.save(commit=False)
+            data.case_id=case_id
+            data.save()
+            return redirect("/case/details/"+str(data.case_id))
+    else:
+        context["message"]="something wrong"
+        ob=CaseRegister.objects.get(id=id)
+        persondata=Person.objects.all().filter(case_id=id)
+        context={"person":persondata}
+        context["section"]=caseSections.objects.all().filter(case_id=id)
+        context["data"]=ob
+        context["form"]=Casesectionform()
+        context["actions"]=CaseAction.objects.filter(case=ob)
+        context["sections"]=caseSections.objects.all().filter(case=ob)
+        return render(request,"admin/case_details.html",context)
 
-def add_judgement_files(request):
-    pass
+
+def add_judgement_files(request,id):
+    context={}
+    if request.method=="POST":
+        form=Judgement_Files_form(request.POST,request.FILES)
+        if form.is_valid():
+            data=form.save(commit=False)
+            data.judgement_id=id
+            data.save()
+            return redirect("/case/details/"+str(data.judgement.case_id))
+    else:
+        context["message"]="something wrong"
+        ob=CaseRegister.objects.get(id=id)
+        persondata=Person.objects.all().filter(case_id=id)
+        context={"person":persondata}
+        context["section"]=caseSections.objects.all().filter(case_id=id)
+        context["data"]=ob
+        context["form"]=Casesectionform()
+        context["actions"]=CaseAction.objects.filter(case=ob)
+        context["sections"]=caseSections.objects.all().filter(case=ob)
+        return render(request,"admin/case_details.html",context)

@@ -55,6 +55,58 @@
       </div>
     </div>
   </div>
+  <button type="button" class="btn btn-outline-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#judgement">
+    Add Judgement
+  </button>
+ 
+  <div class="modal fade" id="judgement" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Section</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form class="row g-3" method="POST" action="{% url 'add_judgement' case_id=data.id %}">
+                {%load crispy_forms_tags %} 
+                {% csrf_token %}
+                {% for field in judgementform %}
+                <div class="col-12">
+                    <label for="{{field.id}}" class="form-label">{{field.label}}</label>
+                    {{field}}
+                </div>
+                {% endfor %}
+                {% for field in form1 %}
+                <div class="col-12">
+                    <label for="{{field.id}}" class="form-label">{{field.label}}</label>
+                    {{field}}
+                    {% if field.help_text %}<div class="alert alert-info alert-dismissible fade show" role="alert">
+                
+                      <i class="bi bi-exclamation-octagon me-1"></i>
+                      {{field.help_text}}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endif %}
+                    {% if field.errors %}<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                
+                      <i class="bi bi-exclamation-octagon me-1"></i>
+                      {{field.errors}}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+      
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" value="Add">
+                  </div>
+            </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 <div class="row align-items-top">
   <div class="col-lg-6">
     <div class="card">
@@ -96,13 +148,37 @@
           </tbody>
         </table>
       </div>
+      
+        
+      
     </div>
     
   </div>
-  {% if section %}
+  
   <div class="col-lg-6">
+    <div class="col-xxl-4 col-md-6">
+      <div class="card info-card sales-card">
+
+        <div class="card-body">
+          <h5 class="card-title">Judgement</h5>
+
+          <div class="d-flex align-items-center">
+            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+              <i class="bi bi-briefcase"></i>
+            </div>
+            <div class="ps-3">
+              <h6>5</h6>
+              {% comment %} <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span> {% endcomment %}
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
     <div class="card">
-      
+
+      {% if section %}
       <div class="card-body">
         <h3 class="card-title">Sections</h3>
         <h1>{% for i in section %}
@@ -112,11 +188,15 @@
         
           {% endfor %}</h1>
       </div>
+      {% endif %}
+
     </div>
   </div>
-  {% endif %}
+  
   
 </div>
+
+
 <div class="col-12">
     <div class="card top-selling overflow-auto">
       <div class="card-body pb-0">
@@ -134,6 +214,125 @@
               <tr>
                 <td>{{i.action}}</td>
                 <td >{{i.date}}</td>
+              </tr>
+              {% endfor %}
+              
+              
+            </tbody>
+          </table>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  {% comment %} judgement {% endcomment %}
+  <div class="col-12">
+    <div class="card top-selling overflow-auto">
+      <div class="card-body pb-0">
+          <h5 class="card-title">Judgement<span></span></h5>
+  
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th class="fw-bold" scope="col">date</th>
+                <th class="fw-bold" scope="col">details</th>
+                <th class="fw-bold" scope="col">action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in judgement %}
+              <tr>
+                <td>{{i.date}}</td>
+                <td >{{i.details}}</td>
+                <td>
+                  <button type="button" class="btn btn-outline-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#files{{i.id}}">
+                    View Files
+                  </button>
+                  
+                  <div class="modal fade" id="files{{i.id}}" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">View Files</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          
+                          <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                  Add Files
+                                </button>
+                              </h2>
+                              <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                  <form class="row g-3" method="POST" action="{% url 'add_judgement_files' id=i.id %}" enctype="multipart/form-data">
+                                    {%load crispy_forms_tags %} 
+                                    {% csrf_token %}
+                                    
+                                    {% for field in Judgement_Files_form %}
+                                    <div class="col-12">
+                                        <label for="{{field.id}}" class="form-label">{{field.label}}</label>
+                                        {{field}}
+                                        {% if field.help_text %}<div class="alert alert-info alert-dismissible fade show" role="alert">
+                                    
+                                          <i class="bi bi-exclamation-octagon me-1"></i>
+                                          {{field.help_text}}
+                                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                        {% endif %}
+                                        {% if field.errors %}<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    
+                                          <i class="bi bi-exclamation-octagon me-1"></i>
+                                          {{field.errors}}
+                                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    {% endfor %}
+                          
+                                    <div class="modal-footer">
+            
+                                        <input type="submit" class="btn btn-primary" value="Add">
+                                      </div>
+                                </form>
+                              </div>
+                            </div>
+                                <table class="table table-striped">
+                                  <thead>
+                                      <tr>
+                                          
+                                          <th class="fw-bold" scope="col">type</th>
+                                          <th class="fw-bold" scope="col">file</th>
+                                         
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                        {% for i in judgementfile %}
+                                      <tr>
+                                       
+                                          <td>{{i.type}}</td>
+                                          
+                                          
+                                          <td ><a href="/media/{{i.file}}">view</a></td>
+                                          
+                                      </tr>
+                                        {% endfor %}
+                                    
+                                  </tbody>
+                                </table>
+                                
+                              
+                            </div>
+                            
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </td>
               </tr>
               {% endfor %}
               
