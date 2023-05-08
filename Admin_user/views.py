@@ -73,8 +73,7 @@ def home(request):
     #insertstate()
     if  (request.user.is_authenticated and check_user_is_admin(request)):
         return redirect("/login")
-    print("_____________________________________\n")
-    print(str(CaseRegister.objects.all().count()))
+   
     crime_type_number=[]
     crime_label=[]
     for i in CaseCategory.objects.all():
@@ -85,15 +84,42 @@ def home(request):
     for i  in Advocate.objects.all():
         advocate_number.append(CaseRegister.objects.all().filter(advocate=i).count())
         advocate_label.append(str(i.name))
+    crime_stage_label=["judgement","closed"]
+    crime_stage_number=[]
+    for i  in ["1","2"]:
+        crime_stage_number.append(CaseRegister.objects.all().filter(status=i).count())
+    casedate_label=[]
+    casedate_number=[]
+    month=[]
+    
+    case_data=[]
+    for i in CaseRegister.objects.all():
+        if i.Filling_Date.month in month:
+            continue
+        else:
+            month.append(i.Filling_Date.month)
+    month.sort()
+    for i in month:
+        case_data.append(CaseRegister.objects.all().filter(Filling_Date__month=i).count())
+    print(case_data)
+    month_or=[]
+    import calendar
+    for i in month:
+        data=str(calendar.month_name[i])
+        month_or.append(str(data))
 
+    print(month_or)
     context["casedata"]=CaseRegister.objects.all().count()
     context["notarydata"]=NotaryModel.objects.all().count()
     context["legal_su"]=Legalscrutiny.objects.all().count()
     context["crime_type_number"]=crime_type_number
-    print(crime_label)
     context["crime_label"]=crime_label
     context["advocate_number"]=advocate_number
     context["advocate_label"]=advocate_label
+    context["crime_stage_label"]=crime_stage_label
+    context["crime_stage_number"]=crime_stage_number
+    context["case_data"]=case_data
+    context["month"]=month_or
     return render(request,"admin/home.html",context)
 
 def add_advocate(request):

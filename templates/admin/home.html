@@ -143,6 +143,44 @@
                       </div>
                     </div>
                   </div>
+                  {% comment %} <div class="col-lg-6">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Case stage</h5>
+          
+                        <!-- Bar Chart -->
+                        <div id="bari"></div>
+          
+                        <script>
+                          document.addEventListener("DOMContentLoaded", () => {
+                            new ApexCharts(document.querySelector("#bari"), {
+                              series: [{
+                                data: {{crime_stage_number}}
+                              }],
+                              chart: {
+                                type: 'bar',
+                                height: 350
+                              },
+                              plotOptions: {
+                                bar: {
+                                  borderRadius: 5,
+                                  horizontal: true,
+                                }
+                              },
+                              dataLabels: {
+                                enabled: false
+                              },
+                              xaxis: {
+                                categories: [{% for i in crime_stage_label %}'{{i}}',{% endfor %}],
+                              }
+                            }).render();
+                          });
+                        </script>
+                        <!-- End Bar Chart -->
+                       
+                      </div>
+                    </div>
+                  </div> {% endcomment %}
                   <div class="col-lg-6">
                     <div class="card">
                       <div class="card-body">
@@ -171,6 +209,42 @@
                       </div>
                     </div>
                   </div>
+                  <h5 class="card-title">Case</h5>
+                  <div id="lineChart"></div>
+
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  new ApexCharts(document.querySelector("#lineChart"), {
+                    series: [{
+                      name: "Case",
+                      data: {{case_data}}
+                    }],
+                    chart: {
+                      height: 350,
+                      type: 'line',
+                      zoom: {
+                        enabled: false
+                      }
+                    },
+                    dataLabels: {
+                      enabled: false
+                    },
+                    stroke: {
+                      curve: 'straight'
+                    },
+                    grid: {
+                      row: {
+                        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                        opacity: 0.5
+                      },
+                    },
+                    xaxis: {
+                      categories: [{% for i in month %}'{{i}}',{% endfor %}],
+                    }
+                  }).render();
+                });
+              </script>
+            
             </div>
       </div>
     </div>
