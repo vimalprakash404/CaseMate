@@ -13,7 +13,7 @@
                 <th class="fw-bold" scope="col">Name</th>
                 <th class="fw-bold" scope="col">Address</th>
                 <th class="fw-bold" scope="col">phone</th>
-                <th class="fw-bold" scope="col">remove</th>
+                <th class="fw-bold" scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -28,7 +28,8 @@
                   {{i.address.Pin}}<br>
                 </td>
                 <td >{{i.phone}}</td>
-                <td><a href="/removeadvocate/{{i.id}}">remove</a></td>
+                <td><a href="/removeadvocate/{{i.id}}">remove</a>
+                <br><a href="">details</a></td>
               </tr>
               {% endfor %}
               
