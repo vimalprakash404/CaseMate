@@ -10,6 +10,7 @@ urlpatterns = [
     path("viewadvocates",view_advocate,name="advocates" ),
     path("removeadvocate/<int:id>",remove_advocate,name="remove_advocate"),
     path("addcase",case_category_add,name="add_case_category"),
+    path("advocate/details/<int:id>",advocatedetails,name="advocatedetails"),
     path("test",test),
     path("contact",contact,name="contact"),
     path("contact/category",contact_category,name="contact_category"),

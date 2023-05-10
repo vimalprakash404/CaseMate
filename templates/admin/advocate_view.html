@@ -13,6 +13,7 @@
                 <th class="fw-bold" scope="col">Name</th>
                 <th class="fw-bold" scope="col">Address</th>
                 <th class="fw-bold" scope="col">phone</th>
+                <th class="fw-bold" scope="col">Category</th>
                 <th class="fw-bold" scope="col">Action</th>
               </tr>
             </thead>
@@ -28,8 +29,9 @@
                   {{i.address.Pin}}<br>
                 </td>
                 <td >{{i.phone}}</td>
+                <td >{{i.specialization}}</td>
                 <td><a href="/removeadvocate/{{i.id}}">remove</a>
-                <br><a href="">details</a></td>
+                <br><a href="{% url 'advocatedetails' id=i.id %}">details</a></td>
               </tr>
               {% endfor %}
               

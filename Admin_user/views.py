@@ -172,7 +172,13 @@ def view_advocate(request):
     return render(request,"admin/advocate_view.html",context)
 
 
-
+def advocatedetails(request,id):
+    context={}
+    context["advocate"]=True
+    context["data"]=Advocate.objects.get(id=id)
+    context["cases"]=CaseRegister.objects.all().filter(advocate_id=id)
+    context["case_no"]=CaseRegister.objects.all().filter(advocate_id=id).count()
+    return render(request,"admin/advocate_details.html",context)
 def add_third_party_advocates(request):
     pass
 #

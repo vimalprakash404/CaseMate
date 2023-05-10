@@ -47,6 +47,7 @@ class Advocate(models.Model):
     address=models.ForeignKey(Address,on_delete=models.DO_NOTHING)
     phone=models.IntegerField()
     court=models.ForeignKey(Court,null=True, on_delete=models.SET_NULL)
+    specialization=models.CharField(default="Criminal", max_length=60)
     def __str__(self) :
         return self.name
     

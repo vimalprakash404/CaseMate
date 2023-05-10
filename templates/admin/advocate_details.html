@@ -1,0 +1,175 @@
+{% extends 'admin/main.html' %}
+{% block content %}
+
+<br>
+
+  
+  
+<div class="row align-items-top">
+  <div class="col-lg-6">
+    <div class="card">
+      
+      <div class="card-body">
+        <h5 class="card-title">{{data}}</h5>
+        
+        <table class="table">
+          
+          <tbody>
+            
+            <tr>
+              <td> Name</td>
+              <td >{{data.name}}</td>
+            </tr>
+            
+            <tr>
+              <td>address</td>
+              <td >{{data.address}}<br>
+                {{data.address.Place}}<br>
+                  {{data.address.City}}<br>
+                  {{data.address.district}}<br>
+                  {{data.address.State}}<br>
+                  {{data.address.Pin}}
+
+              </td>
+            </tr>
+            <tr>
+              <td>Phone</td>
+              <td >{{data.phone}}</td>
+            </tr>
+            <tr>
+              <td>Specialiization</td>
+              <td >{{data.specialization}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+        
+      
+    </div>
+    
+  </div>
+  
+  <div class="col-lg-6">
+    <div class="col-xxl-4 col-md-6">
+      <div class="card info-card sales-card">
+
+        <div class="card-body">
+          <h5 class="card-title">No of case</h5>
+
+          <div class="d-flex align-items-center">
+            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+              <i class="bi bi-briefcase"></i>
+            </div>
+            <div class="ps-3">
+              <h6>{{case_no}}</h6>
+              {% comment %} <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span> {% endcomment %}
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="card">
+
+      {% if section %}
+      <div class="card-body">
+        <h3 class="card-title">Sections</h3>
+        <h1>{% for i in section %}
+        
+          <span class="badge rounded-pill bg-primary"> {{i}}</span> 
+
+        
+          {% endfor %}</h1>
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+  
+  
+</div>
+
+
+<div class="col-12">
+    <div class="card top-selling overflow-auto">
+      <div class="card-body pb-0">
+          <h5 class="card-title">Case list<span></span></h5>
+  
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th class="fw-bold" scope="col">case no</th>
+                <th class="fw-bold" scope="col">case type</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in cases %}
+              <tr>
+                <td>{{i.case_number}}</td>
+                <td >{{i.case_category}}</td>
+              </tr>
+              {% endfor %}
+              
+              
+            </tbody>
+          </table>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  {% if person %}
+  <div class="col-12">
+    <div class="card top-selling overflow-auto">
+      <div class="card-body pb-0">
+          <h5 class="card-title">persons<span></span></h5>
+  
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th class="fw-bold" scope="col">name </th>
+                <th class="fw-bold" scope="col">email</th>
+                <th class="fw-bold" scope="col">type</th>
+                <th class="fw-bold" scope="col">Address</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in person %}
+              <tr>
+                <td>{{i.name}}</td>
+                <td >{{i.email}}</td>
+                <td >{{i.types}}</td>
+                <td >{{i.Address}}
+                  {{i.Address.Place}}<br>
+                  {{i.Address.City}}<br>
+                  {{i.Address.district}}<br>
+                  {{i.Address.State}}<br>
+                  {{i.Address.Pin}}<br>
+                </td>
+              </tr>
+              {% endfor %}
+              
+              
+            </tbody>
+          </table>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  <div>
+    {% comment %} <div class="card-body">
+      {% for i in sections %}
+      <div class="btn btn-primary mb-2">
+        {{i}} <a href="/case/remove/sections/{{i.id}}"><span class="badge bg-secondary text-light"><i class="bi bi-exclamation-triangle me-1"></i></span> </a>
+      </div>
+      {% endfor %}
+      
+    </div> {% endcomment %}
+  </div>
+{% endblock content %}
+
