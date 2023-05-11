@@ -312,6 +312,10 @@ def case(request):
     context["Upadte_hearing_date_form"]=Upadte_hearing_date_form()
     return render(request,"admin/case.html",context)
 
+def gethearingdate(request,id):
+    case_object=CaseRegister.objects.get(id=id)
+    return HttpResponse(case_object.Next_hearing_date)
+
 def addcase(request,id):
     if  (request.user.is_authenticated and check_user_is_admin(request)):
         return redirect("/login")

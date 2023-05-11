@@ -96,7 +96,7 @@
                         <div class="modal-dialog modal-lg">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title">Add Task</h5>
+                              <h5 class="modal-title">Upadte hearing date</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -107,7 +107,7 @@
                                     {% for field in Upadte_hearing_date_form %}
                                     <div class="col-12">
                                         <label for="{{field.id}}" class="form-label">{{field.label}}</label>
-                                        {{field}}
+                                        <input type="date" name="Next_hearing_date" class="form-control" required id="id_Next_hearing_date" min="{{i.Next_hearing_date|date:"Y-m-d"}}">
                                         {% if field.help_text %}<div class="alert alert-info alert-dismissible fade show" role="alert">
                                     
                                           <i class="bi bi-exclamation-octagon me-1"></i>

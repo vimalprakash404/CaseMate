@@ -42,6 +42,7 @@
             </tr>
           </tbody>
         </table>
+        
       </div>
       
         
@@ -96,19 +97,141 @@
     <div class="card top-selling overflow-auto">
       <div class="card-body pb-0">
           <h5 class="card-title">Case list<span></span></h5>
-  
           <table class="table table-striped">
             <thead>
               <tr>
-                <th class="fw-bold" scope="col">case no</th>
-                <th class="fw-bold" scope="col">case type</th>
+                <th class="fw-bold" scope="col">id</th>
+                <th class="fw-bold" scope="col">name</th>
+                <th class="fw-bold" scope="col">Address</th>
+                <th class="fw-bold" scope="col">casenumber</th>
+                <th class="fw-bold" scope="col">year</th>
+                <th class="fw-bold" scope="col">advocates</th>
+                <th class="fw-bold" scope="col">case category</th>
+                <th class="fw-bold" scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
               {% for i in cases %}
               <tr>
-                <td>{{i.case_number}}</td>
+                <th scope="row">{{i.id}}</th>
+                <td>{{i.client_name}}</td>
+                <td>{{i.client_name.Address.House_name}}<br>{{i.client_name.Address.Place}}<br>{{i.client_name.Address.City}}<br>{{i.client_name.Address.State}}<br>{{i.client_name.Address.district}}<br></td>
+                <td >{{i.case_number}}</td>
+                <td >{{i.year}}</td>
+                <td >{{i.advocate}}</td>
                 <td >{{i.case_category}}</td>
+                <td><div class="accordion accordion-flush" id="accordionFlushExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingOne">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne{{i.id}}" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Action
+                      </button>
+                    </h2>
+                    <div id="flush-collapseOne{{i.id}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                      
+                      <button type="button" class="btn btn-outline-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#largeModalca{{i.id}}">
+                        change advocate
+                      </button><br>
+                      <div class="modal fade" id="largeModalca{{i.id}}" tabindex="-1">
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Add Task</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="row g-3" method="POST" action="{% url 'update_advocate' id=i.id %}">
+                                    {%load crispy_forms_tags %} 
+                                    {% csrf_token %}
+                                    {% for field in form %}
+                                    <div class="col-12">
+                                        <label for="{{field.id}}" class="form-label">{{field.label}}</label>
+                                        {{field}}
+                                    </div>
+                                    {% endfor %}
+                                    {% for field in advocate_update_form %}
+                                    <div class="col-12">
+                                        <label for="{{field.id}}" class="form-label">{{field.label}}</label>
+                                        {{field}}
+                                        {% if field.help_text %}<div class="alert alert-info alert-dismissible fade show" role="alert">
+                                    
+                                          <i class="bi bi-exclamation-octagon me-1"></i>
+                                          {{field.help_text}}
+                                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                        {% endif %}
+                                        {% if field.errors %}<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    
+                                          <i class="bi bi-exclamation-octagon me-1"></i>
+                                          {{field.errors}}
+                                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    {% endfor %}
+                          
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <input type="submit" class="btn btn-primary" value="Add">
+                                      </div>
+                                </form>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-outline-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#largeModalhd{{i.id}}">
+                        update hearing date
+                      </button><br>
+                      <div class="modal fade" id="largeModalhd{{i.id}}" tabindex="-1">
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Add Task</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="row g-3" method="POST" action="{% url 'upadte_hearing_details' id=i.id %}">
+                                    {%load crispy_forms_tags %} 
+                                    {% csrf_token %}
+                                    
+                                    {% for field in Upadte_hearing_date_form %}
+                                    <div class="col-12">
+                                        <label for="{{field.id}}" class="form-label">{{field.label}}</label>
+                                        {{field}}
+                                        {% if field.help_text %}<div class="alert alert-info alert-dismissible fade show" role="alert">
+                                    
+                                          <i class="bi bi-exclamation-octagon me-1"></i>
+                                          {{field.help_text}}
+                                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                        {% endif %}
+                                        {% if field.errors %}<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    
+                                          <i class="bi bi-exclamation-octagon me-1"></i>
+                                          {{field.errors}}
+                                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    {% endfor %}
+                          
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <input type="submit" class="btn btn-primary" value="Add">
+                                      </div>
+                                </form>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                      <a type="button" class="btn btn-outline-primary rounded-pill" href="{% url 'close_case' id=i.id %}">close case</a><br>
+                      <a type="button" class="btn btn-outline-primary rounded-pill" href="{% url 'case_details' id=i.id %}">view detials</a><br>
+                    </div>
+                  </div>
+                  
+                </div></td>
               </tr>
               {% endfor %}
               
