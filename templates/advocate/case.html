@@ -13,7 +13,7 @@
                 <th class="fw-bold" scope="col">name</th>
                 <th class="fw-bold" scope="col">Address</th>
                 <th class="fw-bold" scope="col">casenumber</th>
-                <th class="fw-bold" scope="col">year</th>
+                {% comment %} <th class="fw-bold" scope="col">year</th> {% endcomment %}
                 <th class="fw-bold" scope="col">advocates</th>
                 <th class="fw-bold" scope="col">case category</th>
                 <th class="fw-bold" scope="col">Action</th>
@@ -32,7 +32,7 @@
                   {{i.client_name.Address.Pin}}<br>
                 </td>
                 <td >{{i.case_number}}</td>
-                <td >{{i.year}}</td>
+                {% comment %} <td >{{i.year}}</td> {% endcomment %}
                 <td >{{i.advocate}}</td>
                 <td >{{i.case_category}}</td>
                 <td><div class="accordion accordion-flush" id="accordionFlushExample">
@@ -61,7 +61,7 @@
                                     {% for field in Upadte_hearing_date_form %}
                                     <div class="col-12">
                                         <label for="{{field.id}}" class="form-label">{{field.label}}</label>
-                                        {{field}}
+                                        <input type="date" name="Next_hearing_date" class="form-control" required id="id_Next_hearing_date" min="{{i.Next_hearing_date|date:"Y-m-d"}}">
                                         {% if field.help_text %}<div class="alert alert-info alert-dismissible fade show" role="alert">
                                     
                                           <i class="bi bi-exclamation-octagon me-1"></i>

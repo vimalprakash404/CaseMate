@@ -63,7 +63,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Add Section</h5>
+          <h5 class="modal-title">Add Judgement</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -145,6 +145,26 @@
               <td>Filling Date</td>
               <td >{{data.Filling_Date}}</td>
             </tr>
+            <tr>
+              <td>First hearing date</td>
+              <td >{{data.First_hearing_date}}</td>
+            </tr>
+            <tr>
+              <td>Next hearing Date</td>
+              <td >{{data.Next_hearing_date}}</td>
+            </tr>
+            <tr>
+              <td>Fir date</td>
+              <td >{{data.Fir_date}}</td>
+            </tr>
+            <tr>
+              <td>Fir number</td>
+              <td >{{data.Fir_number}}</td>
+            </tr>
+            <tr>
+              <td>Fir Police Station</td>
+              <td >{{data.Fir_policeStation}}</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -167,7 +187,7 @@
               <i class="bi bi-briefcase"></i>
             </div>
             <div class="ps-3">
-              <h6>5</h6>
+              <h6>{{judgement_no}}</h6>
               {% comment %} <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span> {% endcomment %}
 
             </div>
@@ -226,6 +246,7 @@
     </div>
   </div>
   {% comment %} judgement {% endcomment %}
+  {% if judgement %}
   <div class="col-12">
     <div class="card top-selling overflow-auto">
       <div class="card-body pb-0">
@@ -236,7 +257,9 @@
               <tr>
                 <th class="fw-bold" scope="col">date</th>
                 <th class="fw-bold" scope="col">details</th>
+                <th class="fw-bold" scope="col">Attended Advocate</th>
                 <th class="fw-bold" scope="col">action</th>
+                
               </tr>
             </thead>
             <tbody>
@@ -244,6 +267,7 @@
               <tr>
                 <td>{{i.date}}</td>
                 <td >{{i.details}}</td>
+                <td>sagar</td>
                 <td>
                   <button type="button" class="btn btn-outline-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#files{{i.id}}">
                     View Files
@@ -318,6 +342,7 @@
                                           <td ><a href="/media/{{i.file}}">view</a></td>
                                           
                                       </tr>
+                                      
                                         {% endfor %}
                                     
                                   </tbody>
@@ -333,6 +358,7 @@
                     </div>
                   </div>
                 </td>
+                
               </tr>
               {% endfor %}
               
@@ -344,6 +370,7 @@
       </div>
     </div>
   </div>
+  {% endif %}
   {% if person %}
   <div class="col-12">
     <div class="card top-selling overflow-auto">

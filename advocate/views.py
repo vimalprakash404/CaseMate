@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from django.contrib.auth import login as auth_login,authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
-from Admin_user.models import CaseRegister,Todo_list,Advocate,Notification
-from Admin_user.form import TodolistFrom,Casesectionform
+from Admin_user.models import CaseRegister,Todo_list,Advocate,Notification,Judgement as JModel,Judgement_files
+from Admin_user.form import TodolistFrom,Casesectionform,Judgement_Form,Judgement_Files_form
 # Create your views here.
 def dashbord(request):
     context={"title":"Dashboard"}
@@ -79,6 +79,11 @@ def adv_case_details(request,id):
     context["form"]=Casesectionform()
     context["actions"]=CaseAction.objects.filter(case=ob)
     context["sections"]=caseSections.objects.all().filter(case=ob)
+    context["judgement"]=JModel.objects.filter(case=ob)
+    context["judgement_no"]=JModel.objects.filter(case=ob).count()
+    context["judgementfile"]=Judgement_files.objects.all()
+    context["judgementform"]=Judgement_Form()
+    context["Judgement_Files_form"]=Judgement_Files_form()
     return render(request,"advocate/case_details.html",context)
 
 def advocate_addcasesections(request,id):

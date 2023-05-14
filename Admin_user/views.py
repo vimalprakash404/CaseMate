@@ -412,12 +412,13 @@ def case_details(request,id):
     context["section"]=caseSections.objects.all().filter(case_id=id)
     context["data"]=ob
     context["form"]=Casesectionform()
-    context["judgementform"]=Judgement_Form()
-    context["Judgement_Files_form"]=Judgement_Files_form()
     context["actions"]=CaseAction.objects.filter(case=ob)
     context["sections"]=caseSections.objects.all().filter(case=ob)
     context["judgement"]=Judgement.objects.filter(case=ob)
+    context["judgement_no"]=Judgement.objects.filter(case=ob).count()
     context["judgementfile"]=jd_file.objects.all()
+    context["judgementform"]=Judgement_Form()
+    context["Judgement_Files_form"]=Judgement_Files_form()
     return render(request,"admin/case_details.html",context)
 
 def upadte_hearing_details(request,id):
