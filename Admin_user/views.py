@@ -69,6 +69,8 @@ def clienttonotary(request):
 def is_admin(request):
     return not request.user.username[2:].isnumeric() and request.user.username[:2]=="ad"
 def home(request):
+    if  (not request.user.is_authenticated):
+        return redirect("/login")
     context={"title":"Dashboard"}
     #insertstate()
     if  (request.user.is_authenticated and check_user_is_admin(request)):
